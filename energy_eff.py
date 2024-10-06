@@ -3,8 +3,6 @@ import time
 import cvxpy as cp
 import plotly.graph_objects as go
 from pkl_custom import save_pkl_file, load_graph_info
-from brain_3d_rep import BrainGraphVisualizer
-from brain_2d_rep import print_algorithm
 from nilearn_viz import ConnectomeVisualizer
 from node_list import ListNodes
 import matplotlib.pyplot as plt
@@ -101,13 +99,6 @@ class EnergyEfficiency:
     
     def save_answer(self, file_path):
         save_pkl_file(file_path, self.v)
-        
-    def plot_brain_2d(self):
-        print_algorithm(self.H, self.v)
-        
-    def plot_brain_3d(self, brain_dictionary_filepath):
-        brain_plotter = BrainGraphVisualizer(brain_dictionary_filepath, self.v)
-        brain_plotter.visualize_graph()
         
     def plot_brain_3_axis(self, brain_dictionary_filepath):
         brain_plotter = ConnectomeVisualizer(brain_dictionary_filepath, self.v)

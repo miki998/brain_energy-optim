@@ -1,12 +1,10 @@
-import numpy as np
 import time
-import plotly.graph_objects as go
-from pkl_custom import save_pkl_file, load_graph_info
-from brain_3d_rep import BrainGraphVisualizer
-from brain_2d_rep import print_algorithm
-from nilearn_viz import ConnectomeVisualizer
-from node_list import ListNodes
+import numpy as np
+
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+
+from pkl_custom import save_pkl_file, load_graph_info
 
 class PowerControl:
     def __init__(self, input, p_init=0.1, gam_init=0.1, sig_init=0.01, epsilon=0.00000001, p_max=1, alpha=1, rand_p=False, rand_sig=False, seed_p=42):
@@ -107,13 +105,6 @@ class PowerControl:
     def save_answer(self, file_path):
         save_pkl_file(file_path, self.p)
         
-    def plot_brain_2d(self):
-        print_algorithm(self.adj_m, self.p)
-        
-    def plot_brain_3d(self, brain_dictionary_filepath):
-        brain_plotter = BrainGraphVisualizer(brain_dictionary_filepath, self.p)
-        brain_plotter.visualize_graph()
-        
     def plot_histogram(self):
         fig = go.Figure(data=[go.Histogram(x=self.p)])
         fig.update_layout(title="Histogram of one run", xaxis_title="Value", yaxis_title="Frequency", bargap=0.2)
@@ -129,10 +120,6 @@ class PowerControl:
         layout = go.Layout(title='Power vs. Number of Edges', xaxis=dict(title='Number of Edges (Degree)'), yaxis=dict(title='Power'), margin=dict(l=40, r=40, b=40, t=40), showlegend=False)
         fig = go.Figure(data=[scatter], layout=layout)
         fig.show()
-        
-    def plot_list_nodes(self, brain_data_file, n=1):
-        list_plotter = ListNodes(brain_data_file, self.p)
-        list_plotter.visualize_list(n)
         
     def plot_matrix_power_history(self):
         plt.figure(figsize=(12, 8))

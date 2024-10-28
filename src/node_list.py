@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from pkl_custom import load_graph_info
+from src.pkl_custom import load_graph_info
 
 class ListNodes:
     def __init__(self, brain_data_file, vector_file):

@@ -1,6 +1,6 @@
 import numpy as np
 from nilearn import plotting
-from pkl_custom import open_pkl_file
+from src.pkl_custom import open_pkl_file
 import matplotlib.pyplot as plt
 
 class ConnectomeVisualizer:

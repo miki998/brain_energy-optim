@@ -2,9 +2,11 @@ import numpy as np
 import time
 import cvxpy as cp
 import plotly.graph_objects as go
-from pkl_custom import save_pkl_file, load_graph_info
-from nilearn_viz import ConnectomeVisualizer
-from node_list import ListNodes
+
+from src.pkl_custom import save_pkl_file, load_graph_info
+from src.nilearn_viz import ConnectomeVisualizer
+from src.node_list import ListNodes
+
 import matplotlib.pyplot as plt
 
 class EnergyEfficiency:

@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
-from pkl_custom import save_pkl_file, load_graph_info
+from src.pkl_custom import save_pkl_file, load_graph_info
 
 class PowerControl:
     def __init__(self, input, p_init=0.1, gam_init=0.1, sig_init=0.01, epsilon=0.00000001, p_max=1, alpha=1, rand_p=False, rand_sig=False, seed_p=42):

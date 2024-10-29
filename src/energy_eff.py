@@ -3,9 +3,8 @@ import time
 import cvxpy as cp
 import plotly.graph_objects as go
 
-from src.pkl_custom import save_pkl_file, load_graph_info
 from src.nilearn_viz import ConnectomeVisualizer
-from src.node_list import ListNodes
+from src.pkl_custom import save_pkl_file, load_graph_info
 
 import matplotlib.pyplot as plt
 
@@ -122,10 +121,6 @@ class EnergyEfficiency:
         layout = go.Layout(title='Power vs. Number of Edges', xaxis=dict(title='Number of Edges (Degree)'), yaxis=dict(title='Power'), margin=dict(l=40, r=40, b=40, t=40), showlegend=False)
         fig = go.Figure(data=[scatter], layout=layout)
         fig.show()
-        
-    def plot_list_nodes(self, brain_data_file, n=1):
-        list_plotter = ListNodes(brain_data_file, self.v)
-        list_plotter.visualize_list(n)
         
     def plot_matrix_power_history(self):
         plt.figure(figsize=(12, 8))

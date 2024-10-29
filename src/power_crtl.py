@@ -72,7 +72,7 @@ class PowerControl_updated:
         
         for i in range(self.n):
             # NOTE: Be careful her the adj_m is written to be outgoing edge
-            # in our case since the graph is undirected it is fine but for directed diff
+            # in our case since the graph is undirected it is fine but for directed diffx
             inner_sum = np.sum(np.abs(self.adj_m[i, :])**2 * self.p)
             second_term += self.y[i]**2 * (inner_sum + self.sigma[i]) 
 

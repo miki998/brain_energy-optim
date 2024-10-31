@@ -23,6 +23,7 @@ class PowerControl_updated:
         
         scores = []
         while(np.abs(init_eff - curr_eff) >= self.epsilon and iterations < 1000000):
+            # Parameter Updating
             self.y_update()
             self.gam_update()
             self.p_update()
@@ -72,14 +73,14 @@ class PowerControl_updated:
         
         for i in range(self.n):
             # NOTE: Be careful her the adj_m is written to be outgoing edge
-            # in our case since the graph is undirected it is fine but for directed diffx
+            # in our case since the graph is undirected it is fine but for directed diff
             inner_sum = np.sum(np.abs(self.adj_m[i, :])**2 * self.p)
             second_term += self.y[i]**2 * (inner_sum + self.sigma[i]) 
 
         return first_term - second_term
 
     def y_update(self):
-        # Missing absolute value for denom
+        # NOTE: Missing absolute value for denom - in case complex graph
         for station_idx in range(self.n):
             num = np.sqrt(self.weight[station_idx] * (1 + self.gam[station_idx]) * self.adj_m[station_idx,station_idx] ** 2 * self.p[station_idx])
             denom = (self.adj_m[:, station_idx] ** 2 * self.p).sum() + self.sigma[station_idx] ** 2
@@ -95,7 +96,7 @@ class PowerControl_updated:
         for station_idx in range(self.n):
             num = (self.y[station_idx] ** 2) * self.weight[station_idx] * (1 + self.gam[station_idx]) * self.adj_m[station_idx, station_idx] ** 2
 
-            # AGAIN HERE IT SEEMS THAT THERE MIGHT BE A PROBLEM WHEN USING DIRECTED GRAPH
+            # NOTE: Might be a problem when using directed graph
             denom = ((self.y ** 2) * (self.adj_m[:, station_idx] ** 2)).sum() ** 2
             self.p[station_idx] = min(self.p_max, num / denom)
 
